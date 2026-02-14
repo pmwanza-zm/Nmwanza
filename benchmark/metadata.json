@@ -1,0 +1,243 @@
+{
+  "name": "UCT Benchmark Dataset",
+  "version": "1.0.0",
+  "created_at": "2026-02-14T21:44:48.659405+00:00",
+  "description": "Benchmark dataset for evaluating space object tracking algorithms. Contains EO optical observations of 11 satellites from 59 sensors over 5 days (Jan 24-28 2026). Produced by SDA TAP Lab / SpOC.",
+  "project": "SDA TAP Lab / SpOC",
+  "time_window": {
+    "start": "2026-01-24T00:00:00Z",
+    "end": "2026-01-28T23:59:59Z",
+    "days": 5
+  },
+  "statistics": {
+    "n_satellites": 11,
+    "n_observations": 22450,
+    "n_tracks": 892,
+    "n_events": 30,
+    "n_sensors": 56,
+    "data_sources": [
+      "UDL/EXO",
+      "UDL/SILENTIUM",
+      "UDL/LEOLABS",
+      "UDL/OPTICALX"
+    ]
+  },
+  "event_types": {
+    "TRACK_GAP": {
+      "count": 19,
+      "description": "Observation gap exceeding 12 hours for this satellite",
+      "source": "COMPUTED",
+      "threshold": "12 hour gap"
+    },
+    "SPARSE_OBJECT": {
+      "count": 5,
+      "description": "Satellite with fewer than 100 observations in window",
+      "source": "COMPUTED",
+      "threshold": "< 100 observations"
+    },
+    "CONJUNCTION": {
+      "count": 3,
+      "description": "Close approach warning from UDL \u2014 two satellites near",
+      "source": "UDL",
+      "threshold": "any miss distance"
+    },
+    "SINGLE_OBS_TRACK": {
+      "count": 2,
+      "description": "Track containing only one observation",
+      "source": "COMPUTED",
+      "threshold": "n_obs == 1"
+    },
+    "MANEUVER": {
+      "count": 1,
+      "description": "Sudden change in range rate indicating orbital maneuver",
+      "source": "COMPUTED",
+      "threshold": "delta range_rate > 0.5 km/s"
+    }
+  },
+  "columns": {
+    "observations": {
+      "sat_no": "Satellite catalog number",
+      "ob_time": "Observation timestamp UTC",
+      "ra": "Right ascension degrees",
+      "dec": "Declination degrees",
+      "az": "Azimuth degrees",
+      "el": "Elevation degrees",
+      "range_km": "Slant range km",
+      "sensor_id": "Sensor identifier",
+      "track_id": "Track group ID",
+      "range_rate": "Range rate km/s",
+      "split": "train or test",
+      "is_simulated": "Synthetic observation flag"
+    },
+    "events": {
+      "id": "Unique event UUID",
+      "sat_no": "Satellite catalog number",
+      "event_type": "Event classification",
+      "event_time": "When event occurred UTC",
+      "track_id": "Associated track ID",
+      "confidence": "Detection confidence 0-1",
+      "source": "COMPUTED or UDL",
+      "details": "Event specific metadata",
+      "split": "train or test",
+      "description": "Human readable label"
+    }
+  },
+  "evaluation": {
+    "metric": "F1 score per event type",
+    "secondary": [
+      "precision",
+      "recall"
+    ],
+    "protocol": "Train on Jan 24-26 observations. Predict events on Jan 27-28. Score against ground truth events.",
+    "baseline": "Random event assignment at observed base rates"
+  },
+  "satellites": {
+    "19751": {
+      "sat_no": 19751,
+      "n_obs": 4,
+      "n_tracks": 1,
+      "n_events": 1,
+      "event_types": [
+        "SPARSE_OBJECT"
+      ],
+      "first_obs": "2026-01-24 16:15:56.563939+00:00",
+      "last_obs": "2026-01-24 16:16:44.348029+00:00",
+      "is_sparse": true,
+      "sensors_used": 1
+    },
+    "22314": {
+      "sat_no": 22314,
+      "n_obs": 1050,
+      "n_tracks": 50,
+      "n_events": 4,
+      "event_types": [
+        "TRACK_GAP"
+      ],
+      "first_obs": "2026-01-24 00:37:22.041953+00:00",
+      "last_obs": "2026-01-28 07:40:13.925256+00:00",
+      "is_sparse": false,
+      "sensors_used": 15
+    },
+    "23613": {
+      "sat_no": 23613,
+      "n_obs": 468,
+      "n_tracks": 37,
+      "n_events": 4,
+      "event_types": [
+        "TRACK_GAP"
+      ],
+      "first_obs": "2026-01-24 12:19:03.238015+00:00",
+      "last_obs": "2026-01-28 20:15:50.633964+00:00",
+      "is_sparse": false,
+      "sensors_used": 7
+    },
+    "24876": {
+      "sat_no": 24876,
+      "n_obs": 5,
+      "n_tracks": 1,
+      "n_events": 1,
+      "event_types": [
+        "SPARSE_OBJECT"
+      ],
+      "first_obs": "2026-01-27 02:28:20.729956+00:00",
+      "last_obs": "2026-01-27 02:29:37.797975+00:00",
+      "is_sparse": true,
+      "sensors_used": 1
+    },
+    "27566": {
+      "sat_no": 27566,
+      "n_obs": 1268,
+      "n_tracks": 66,
+      "n_events": 4,
+      "event_types": [
+        "TRACK_GAP"
+      ],
+      "first_obs": "2026-01-24 12:40:47.646953+00:00",
+      "last_obs": "2026-01-28 22:29:09.083318+00:00",
+      "is_sparse": false,
+      "sensors_used": 8
+    },
+    "32711": {
+      "sat_no": 32711,
+      "n_obs": 90,
+      "n_tracks": 9,
+      "n_events": 5,
+      "event_types": [
+        "TRACK_GAP",
+        "SPARSE_OBJECT"
+      ],
+      "first_obs": "2026-01-24 13:31:39.243678+00:00",
+      "last_obs": "2026-01-28 13:00:52.148165+00:00",
+      "is_sparse": true,
+      "sensors_used": 5
+    },
+    "39070": {
+      "sat_no": 39070,
+      "n_obs": 10614,
+      "n_tracks": 309,
+      "n_events": 0,
+      "event_types": [],
+      "first_obs": "2026-01-24 05:02:58.567864+00:00",
+      "last_obs": "2026-01-28 17:54:57.995321+00:00",
+      "is_sparse": false,
+      "sensors_used": 9
+    },
+    "39086": {
+      "sat_no": 39086,
+      "n_obs": 1,
+      "n_tracks": 1,
+      "n_events": 5,
+      "event_types": [
+        "CONJUNCTION",
+        "SINGLE_OBS_TRACK",
+        "SPARSE_OBJECT"
+      ],
+      "first_obs": "2026-01-25 14:11:13.249233+00:00",
+      "last_obs": "2026-01-25 14:11:13.249233+00:00",
+      "is_sparse": true,
+      "sensors_used": 1
+    },
+    "39504": {
+      "sat_no": 39504,
+      "n_obs": 5434,
+      "n_tracks": 242,
+      "n_events": 2,
+      "event_types": [
+        "MANEUVER",
+        "TRACK_GAP"
+      ],
+      "first_obs": "2026-01-24 00:36:45.973913+00:00",
+      "last_obs": "2026-01-28 23:55:46.131170+00:00",
+      "is_sparse": false,
+      "sensors_used": 13
+    },
+    "40730": {
+      "sat_no": 40730,
+      "n_obs": 41,
+      "n_tracks": 3,
+      "n_events": 2,
+      "event_types": [
+        "TRACK_GAP",
+        "SPARSE_OBJECT"
+      ],
+      "first_obs": "2026-01-27 08:27:34.208864+00:00",
+      "last_obs": "2026-01-28 08:44:50.726437+00:00",
+      "is_sparse": true,
+      "sensors_used": 2
+    },
+    "42915": {
+      "sat_no": 42915,
+      "n_obs": 3475,
+      "n_tracks": 173,
+      "n_events": 2,
+      "event_types": [
+        "TRACK_GAP",
+        "SINGLE_OBS_TRACK"
+      ],
+      "first_obs": "2026-01-24 18:40:08.157004+00:00",
+      "last_obs": "2026-01-28 23:44:56.906649+00:00",
+      "is_sparse": false,
+      "sensors_used": 17
+    }
+  }
+}
