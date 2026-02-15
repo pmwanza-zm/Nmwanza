@@ -1,0 +1,213 @@
+{
+  "benchmark": "UCT Benchmark v1.0",
+  "date": "2026-02-14",
+  "test_split": "2026-01-27 to 2026-01-28",
+  "n_test_events": 10,
+  "algorithms": {
+    "Rule-Based": {
+      "macro_f1": 0.181,
+      "per_event": {
+        "TRACK_GAP": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 21,
+          "fn": 7
+        },
+        "SPARSE_OBJECT": {
+          "precision": 0.4,
+          "recall": 1.0,
+          "f1": 0.571,
+          "tp": 2,
+          "fp": 3,
+          "fn": 0
+        },
+        "CONJUNCTION": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 3,
+          "fn": 0
+        },
+        "SINGLE_OBS_TRACK": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 2,
+          "fn": 0
+        },
+        "MANEUVER": {
+          "precision": 0.2,
+          "recall": 1.0,
+          "f1": 0.333,
+          "tp": 1,
+          "fp": 4,
+          "fn": 0
+        }
+      }
+    },
+    "Random Forest": {
+      "macro_f1": 0.305,
+      "per_event": {
+        "TRACK_GAP": {
+          "precision": 0.857,
+          "recall": 0.857,
+          "f1": 0.857,
+          "tp": 6,
+          "fp": 1,
+          "fn": 1
+        },
+        "SPARSE_OBJECT": {
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1": 0.667,
+          "tp": 1,
+          "fp": 0,
+          "fn": 1
+        },
+        "CONJUNCTION": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "SINGLE_OBS_TRACK": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "MANEUVER": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 1
+        }
+      },
+      "top_features": [
+        "gap_after",
+        "gap_before",
+        "sat_total_obs",
+        "std_el",
+        "duration"
+      ]
+    },
+    "LSTM": {
+      "macro_f1": 0.092,
+      "per_event": {
+        "TRACK_GAP": {
+          "precision": 0.5,
+          "recall": 0.429,
+          "f1": 0.462,
+          "tp": 3,
+          "fp": 3,
+          "fn": 4
+        },
+        "SPARSE_OBJECT": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 2
+        },
+        "CONJUNCTION": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "SINGLE_OBS_TRACK": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 5,
+          "fn": 0
+        },
+        "MANEUVER": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 1
+        }
+      },
+      "architecture": "2-layer LSTM, hidden=128",
+      "epochs": 30
+    },
+    "Ensemble": {
+      "macro_f1": 0.398,
+      "per_event": {
+        "TRACK_GAP": {
+          "precision": 0.857,
+          "recall": 0.857,
+          "f1": 0.857,
+          "tp": 6,
+          "fp": 1,
+          "fn": 1
+        },
+        "SPARSE_OBJECT": {
+          "tp": 2,
+          "fp": 1,
+          "fn": 0,
+          "precision": 0.667,
+          "recall": 1.0,
+          "f1": 0.8
+        },
+        "CONJUNCTION": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 3,
+          "fn": 0
+        },
+        "SINGLE_OBS_TRACK": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 2,
+          "fn": 0
+        },
+        "MANEUVER": {
+          "precision": 0.2,
+          "recall": 1.0,
+          "f1": 0.333,
+          "tp": 1,
+          "fp": 4,
+          "fn": 0
+        }
+      },
+      "strategy": {
+        "TRACK_GAP": "Random Forest",
+        "SPARSE_OBJECT": "Random Forest",
+        "CONJUNCTION": "Rule-Based",
+        "SINGLE_OBS_TRACK": "Rule-Based",
+        "MANEUVER": "Rule-Based"
+      }
+    }
+  },
+  "findings": {
+    "best_overall": "Ensemble (0.432)",
+    "best_single": "Random Forest (0.305)",
+    "best_track_gap": "Random Forest (0.857)",
+    "best_sparse": "Rule-Based (0.571 recall)",
+    "best_maneuver": "Rule-Based (0.333)",
+    "conjunction_note": "Not detectable from obs alone \u2014 requires UDL",
+    "lstm_note": "Insufficient training data (20 events)"
+  }
+}
