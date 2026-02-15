@@ -1,0 +1,19 @@
+\begin{table}[h]
+\centering
+\caption{Imputation Method Evaluation for Range Rate 
+Simulation. RMSE against real data, KS test p-value 
+(higher = more similar to real distribution), 
+and computational runtime.}
+\label{tab:imputation_comparison}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Method} & \textbf{RMSE} & \textbf{KS Stat} & \textbf{KS p-value} & \textbf{Runtime (s)} \\
+\midrule
+Real Data & — & — & — & — \\
+Mean & \textbf{0.0618} & 0.6915 & \textbf{0.0000} & 0.003 \\
+KNN & 0.1169 & 0.6484 & \textbf{0.0000} & 1.271 \\
+MICE & 0.0623 & 0.6915 & \textbf{0.0000} & 0.074 \\
+VAE & 0.1749 & 0.3166 & \textbf{0.0000} & \textbf{0.000} \\
+\bottomrule
+\end{tabular}
+\end{table}
