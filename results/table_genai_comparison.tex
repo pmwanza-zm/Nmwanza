@@ -1,0 +1,23 @@
+\begin{table}[h]
+\centering
+\caption{Comparison of Imputation and Generative AI 
+Methods for Range Rate Simulation. RMSE against 
+ground truth, KS statistic (lower = more similar 
+to real distribution), and training/inference 
+runtime. Best score per column in \textbf{bold}.}
+\label{tab:genai_comparison}
+\begin{tabular}{llcccc}
+\toprule
+\textbf{Method} & \textbf{Type} & \textbf{RMSE} & 
+\textbf{KS Stat} & \textbf{KS p-val} & 
+\textbf{Runtime (s)} \\
+\midrule
+Mean & Imputation & \textbf{0.0618} & 0.6915 & 0.0000 & \textbf{0.00} \\
+KNN & Imputation & 0.1334 & \textbf{0.6403} & 0.0000 & 0.90 \\
+MICE & Imputation & 0.0628 & 0.6915 & 0.0000 & 0.04 \\
+GAN & Gen AI & 0.0632 & 0.6682 & 0.0000 & 132.11 \\
+CVAE & Gen AI & 0.0620 & 0.6624 & 0.0000 & 73.88 \\
+AR & Gen AI & 0.1995 & 0.6729 & 0.0000 & 56.23 \\
+\bottomrule
+\end{tabular}
+\end{table}
