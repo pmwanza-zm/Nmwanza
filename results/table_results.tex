@@ -1,0 +1,18 @@
+\begin{table}[h]
+\centering
+\caption{Event Detection Performance on UCT Benchmark (F1 Score). 
+TG=Track Gap, SO=Sparse Object, CJ=Conjunction, 
+ST=Single Obs Track, MV=Maneuver. 
+Best score per column in \textbf{bold}.}
+\label{tab:algorithm_comparison}
+\begin{tabular}{lccccccc}
+\toprule
+\textbf{Method} & \textbf{TG} & \textbf{SO} & \textbf{CJ} & \textbf{ST} & \textbf{MV} & \textbf{Macro F1} \\
+\midrule
+Rule-Based & 0.000 & 0.571 & 0.000 & 0.000 & \textbf{0.333} & 0.181 \\
+Random Forest & \textbf{0.857} & 0.667 & 0.000 & 0.000 & 0.000 & 0.305 \\
+LSTM & 0.462 & 0.000 & 0.000 & 0.000 & 0.000 & 0.092 \\
+Ensemble & \textbf{0.857} & \textbf{0.800} & 0.000 & 0.000 & \textbf{0.333} & \textbf{0.398} \\
+\bottomrule
+\end{tabular}
+\end{table}
