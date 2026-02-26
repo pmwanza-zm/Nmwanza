@@ -5,3 +5,10 @@ uct-benchmark-pipeline/pipeline_*.json
 uct-benchmark-pipeline/pipeline_*.csv
 uct-benchmark-pipeline/__pycache__/
 uct-benchmark-pipeline/.venv/
+
+# UCT Benchmark Pipeline
+uct-benchmark-pipeline/.env
+uct-benchmark-pipeline/pipeline_*.json
+uct-benchmark-pipeline/pipeline_*.csv
+uct-benchmark-pipeline/__pycache__/
+uct-benchmark-pipeline/.venv/
